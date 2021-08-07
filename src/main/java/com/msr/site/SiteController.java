@@ -41,7 +41,6 @@ public class SiteController
             return service.getSitesForZipcode(zipcode.get());
         }
         return service.getAllSites();
-
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/sites")
