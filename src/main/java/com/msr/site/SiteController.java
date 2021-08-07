@@ -34,11 +34,17 @@ public class SiteController
     private UseTypeService useTypeService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/sites")
-    public List<Site> getSitesForZipcode(@RequestParam(required = false) Optional<String> zipcode)
+    public List<Site> getSitesForZipcode(@RequestParam(required = false) Optional<String> zipcode,
+                                         @RequestParam(required = false) Optional<Integer> page,
+                                         @RequestParam(required = false) Optional<Integer> size)
     {
         if (zipcode.isPresent())
         {
             return service.getSitesForZipcode(zipcode.get());
+        }
+        else if (page.isPresent() && size.isPresent())
+        {
+            return service.getSitesPaginated(page.get(), size.get());
         }
         return service.getAllSites();
     }

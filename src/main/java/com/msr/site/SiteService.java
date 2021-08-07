@@ -5,6 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -13,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class SiteService
+class SiteService
 {
     @Autowired
     private SiteRepository repository;
@@ -38,6 +41,18 @@ public class SiteService
     public List<Site> getSitesForZipcode(String zipcode)
     {
         return repository.findSiteByZipcode(zipcode);
+    }
+
+    public List<Site> getSitesPaginated(int page, int size)
+    {
+        PageRequest pageable = PageRequest.of(page, size);
+
+        Page<Site> pagedSites = repository.findAll(pageable);
+        if (pagedSites.hasContent())
+        {
+            return pagedSites.getContent();
+        }
+        return null;
     }
 
     public void deleteSite(int siteId)
