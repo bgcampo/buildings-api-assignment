@@ -34,9 +34,9 @@ public class SiteController
     private UseTypeService useTypeService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/sites")
-    public List<Site> getSitesForZipcode(@RequestParam(required = false) Optional<String> zipcode,
-                                         @RequestParam(required = false) Optional<Integer> page,
-                                         @RequestParam(required = false) Optional<Integer> size)
+    public List<Site> getAllSites(@RequestParam(required = false) Optional<String> zipcode,
+                                  @RequestParam(required = false) Optional<Integer> page,
+                                  @RequestParam(required = false) Optional<Integer> size)
     {
         if (zipcode.isPresent())
         {
