@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface SiteRepository extends PagingAndSortingRepository<Site, Integer>
 {
-    List<Site> findSiteByZipcode(int zipcode);
+    List<Site> findSiteByZipcode(String zipcode);
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 public class SiteController
@@ -32,21 +33,16 @@ public class SiteController
     @Autowired
     private UseTypeService useTypeService;
 
-    @RequestMapping(value = "/sites")
-    public List<Site> getAllSites()
+    @RequestMapping(method = RequestMethod.GET, value = "/sites")
+    public List<Site> getSitesForZipcode(@RequestParam(required = false) Optional<String> zipcode)
     {
+        if (zipcode.isPresent())
+        {
+            return service.getSitesForZipcode(zipcode.get());
+        }
         return service.getAllSites();
-    }
 
-//    @RequestMapping(method = RequestMethod.GET, value = "/sites")
-//    public List<Site> getSitesForZipcode(@RequestParam(required = false) final Integer zipcode)
-//    {
-//        if (zipcode == null)
-//        {
-//            return service.getAllSites();
-//        }
-//        return service.getSitesForZipcode(zipcode);
-//    }
+    }
 
     @RequestMapping(method = RequestMethod.POST, value = "/sites")
     public void addSite(@RequestBody Site site)

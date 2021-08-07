@@ -35,7 +35,7 @@ public class SiteService
         return repository.findById(siteId).get();
     }
 
-    public List<Site> getSitesForZipcode(int zipcode)
+    public List<Site> getSitesForZipcode(String zipcode)
     {
         return repository.findSiteByZipcode(zipcode);
     }
