@@ -1,6 +1,7 @@
-package com.msr.model;
+package com.msr.usetype;
 
 import lombok.Data;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,4 +13,5 @@ public class UseType {
     private int id;
 
     private String name;
+
 }

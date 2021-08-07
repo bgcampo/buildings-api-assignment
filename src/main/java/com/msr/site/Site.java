@@ -1,10 +1,10 @@
-package com.msr.model;
+package com.msr.site;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.msr.siteuse.SiteUse;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.List;
 
 @Data
@@ -12,8 +12,10 @@ import java.util.List;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @Entity
-public class Site {
+public class Site
+{
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private String name;
@@ -27,5 +29,6 @@ public class Site {
     private String zipcode;
 
     @Transient
+    @JsonIgnore
     private List<SiteUse> siteUses;
 }

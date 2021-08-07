@@ -1,4 +1,4 @@
-package com.msr;
+package com.msr.site;
 
 import org.junit.jupiter.api.Test;
 
@@ -6,34 +6,35 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
- * Intended as a starting point for unit testing SitesController
+ * Intended as a starting point for unit testing SiteController
  */
-class SitesControllerTest {
+class SiteControllerTest
+{
 
-    private final SitesController sitesController = new SitesController();
+    private final SiteController siteController = new SiteController();
 
     @Test
     void testSampleResponse_NullMessageParameter() {
-        String response = sitesController.getSampleResponse(null, false);
-        assertEquals(SitesController.NO_SAMPLE_PARAM_PROVIDED, response);
+        String response = siteController.getSampleResponse(null, false);
+        assertEquals(siteController.NO_SAMPLE_PARAM_PROVIDED, response);
     }
 
     @Test
     void testSampleResponse_EmptyMessageParameter() {
-        String response = sitesController.getSampleResponse("", false);
-        assertEquals(SitesController.NO_SAMPLE_PARAM_PROVIDED, response);
+        String response = siteController.getSampleResponse("", false);
+        assertEquals(siteController.NO_SAMPLE_PARAM_PROVIDED, response);
     }
 
     @Test
     void testSampleResponse_MessageParameterProvided() {
         String expectedString = "This is the expected output parameter.";
-        String response = sitesController.getSampleResponse(expectedString, false);
-        assertEquals(SitesController.SAMPLE_PARAM_PROVIDED + expectedString, response);
+        String response = siteController.getSampleResponse(expectedString, false);
+        assertEquals(siteController.SAMPLE_PARAM_PROVIDED + expectedString, response);
     }
 
     @Test
     void testSampleResponse_ThrowsWhenThrowErrorIsTrue() {
-        assertThrows(RuntimeException.class, () -> sitesController.getSampleResponse(null, true));
+        assertThrows(RuntimeException.class, () -> siteController.getSampleResponse(null, true));
     }
 
     /**
